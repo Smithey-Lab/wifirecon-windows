@@ -1,7 +1,10 @@
 # The interface. Qt widgets, drawn natively — no browser engine, no WebView2.
 # Essentials rather than the full PySide6 because QtWebEngine is not used and
 # would add several hundred megabytes for nothing.
-PySide6-Essentials>=6.7,<7
+# 6.12 aborts on Python 3.10 ("Fatal Python error: none_dealloc" in the
+# self-checks), so 3.10 stays on 6.11; 3.11 and newer take the latest 6.x.
+PySide6-Essentials>=6.7,<6.12; python_version < "3.11"
+PySide6-Essentials>=6.7,<7; python_version >= "3.11"
 
 # The optional web server, for reaching a running survey from another machine.
 # The desktop application does not need these and will start without them.
